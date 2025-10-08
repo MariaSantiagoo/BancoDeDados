@@ -1,0 +1,30 @@
+CREATE DATABASE Loja_M;
+
+USE Loja_M;
+
+CREATE TABLE Cliente(
+	IdCliente INT IDENTITY(1,1) PRIMARY KEY,
+	Nome NVARCHAR(255) NOT NULL
+);
+
+SELECT * FROM Cliente;
+
+CREATE TABLE Produto(
+	IdProduto INT IDENTITY(1,1) PRIMARY KEY,
+	Nome NVARCHAR(255) NOT NULL,
+	Preco DECIMAL(6, 2) NOT NULL
+);
+
+SELECT * FROM Produto;
+
+CREATE TABLE Pedido(
+	IdPedido INT IDENTITY(1,1) PRIMARY KEY,
+	Data_horario DATETIME2 NOT NULL,
+	IdCliente INT NOT NULL,
+	IdProduto INT NOT NULL,
+
+	FOREIGN KEY(IdCliente) REFERENCES Cliente(IdCliente),
+	FOREIGN KEY (IdProduto) REFERENCES Produto (IdProduto),
+);
+
+SELECT * FROM Pedido;
