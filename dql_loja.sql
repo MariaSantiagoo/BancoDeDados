@@ -49,3 +49,14 @@ INNER JOIN Cliente C ON Pedido.IdCliente = C.IdCliente
 INNER JOIN Produto PR ON Pedido.IdProduto = PR.IdProduto
 WHERE data_horario BETWEEN '2025-10-07' 
    AND '2025-10-08' ;
+
+
+   --Mostre todos os clientes, produtos e pedidos mesmo que não se correspondam        dia:10/10
+   SELECT 
+   C.Nome AS 'Nome do Cliente',
+   PR.Nome AS 'Nome do Produto',
+   PR.Preco,
+   FORMAT(PE.Data_horario, 'dd-mm-yyyy hh:mm:ss') AS 'Data do Pedido'
+   FROM Cliente C
+   FULL JOIN Pedido PE ON PE.IdCliente = C.IdCliente
+   FULL JOIN Produto PR ON PR.IdProduto = PE.IdProduto;
